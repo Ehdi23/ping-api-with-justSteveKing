@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-final class Service extends Model
+final class Credential extends Model
 {
     use HasFactory;
     use HasUlids;
@@ -16,7 +17,8 @@ final class Service extends Model
     /** @var array<int,string> */
     protected $fillable = [
         'name',
-        'url',
+        'type',
+        'value',
         'user_id',
     ];
 
@@ -29,12 +31,12 @@ final class Service extends Model
         );
     }
 
-    /** @return HasMany<Check> */
-    public function checks(): HasMany
+    /** @return array<string|class-string> */
+    protected function casts(): array
     {
-        return $this->hasMany(
-            related: Check::class,
-            foreignKey: 'service_id',
-        );
+        return [
+            'type' => 'array',
+            'value' => 'encrypted',
+        ];
     }
 }

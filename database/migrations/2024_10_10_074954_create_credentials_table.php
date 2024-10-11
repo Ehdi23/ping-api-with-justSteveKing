@@ -8,29 +8,25 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('credentials', function (Blueprint $table) {
             $table->ulid('id')->primary();
 
             $table->string('name');
-            $table->string('url')->unique();
 
-            
-            $table
-                ->foreignUlid('user_id')
+            $table->string('type');
+            $table->text('value');
+
+            $table->foreignUlid('user_id')
                 ->index()
                 ->constrained('users')
                 ->cascadeOnDelete();
-
-
+                
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('credentials');
     }
 };

@@ -6,20 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('checks', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
+
+            $table->string('name');
+            $table->string('path');
+            $table->string('method')->default('GET');
+
+            $table->string('body')->nullable();
+            $table->json('header')->nullable();
+            $table->json('parameters')->nullable();
+
+            $table->foreignUlid('credential_id')
+                ->nullable()
+                ->index()
+                ->constrained('credentials')
+                ->cascadeOnDelete();
+
+            $table->foreignUlid('service_id')
+                ->index()
+                ->constrained('services')
+                ->cascadeOnDelete();
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('checks');
