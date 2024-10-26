@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Services;
+namespace App\Http\Controllers\v1\Services;
 
-final class ShowController
+final class StoreController
 {
     public function __invoke()
     {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Credentials;
+namespace App\Http\Controllers\v1\Checks;
 
-final class IndexController
+final class DeleteController
 {
     public function __invoke()
     {
