@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\v1\Credentials;
+namespace App\Http\Controllers\V1\Credentials;
 
 final class IndexController
 {

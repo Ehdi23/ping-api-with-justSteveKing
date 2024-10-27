@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->as('v1:')->group(static function (): void {
     Route::get('/', fn() => response()->json(request()->route()))->middleware(['sunset:' . now()->subDays(value: 3)]);
-    
-    Route::middleware(['auth:sanctum', 'throttle:api'])->group(static function (): void {
-        Route::get('/user', fn(Request $request) => $request->user()->name(name: 'user'));
+
+    // Route::middleware(['auth:sanctum', 'throttle:api'])->group(static function (): void {
+    //     Route::get('/user', fn(Request $request) => $request->user()->name(name: 'user'));
 
         Route::prefix('services')->as('services:')->group(base_path(
             path: 'routes/api/v1/services.php',
@@ -23,7 +23,11 @@ Route::prefix('v1')->as('v1:')->group(static function (): void {
             path: 'routes/api/v1/checks.php',
         ));
     });
-});
+    
+    Route::prefix('auth')->as('auth:')->group(base_path(
+        path: 'routes/auth.php',
+    ));
+// });
 
 Route::prefix('v2')->as('v2:')->group(static function (): void {
     Route::get('/', fn() => response()->json(request()->route()));

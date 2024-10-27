@@ -21,13 +21,13 @@ final class CheckFactory extends Factory
             'path' => $this->faker->filePath(),
             'method' => 'GET',
             'body' => null,
-            'headers' => null,
+            'header' => null,
             'parameters' => null,
             'credential_id' => $this->faker->boolean()
                 ? Credential::factory()
                 : null,
             'service_id' => Service::factory(),
-            'user_id' => User::factory(),
+            // 'user_id' => User::factory(),
         ];
     }
 }
