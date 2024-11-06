@@ -11,6 +11,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property string $id
+ * @property string $name
+ * @property string $path
+ * @property string $method
+ * @property null|object $json
+ * @property null|\Illuminate\Support\Collection $headers
+ * @property null|\Illuminate\Support\Collection $parameters
+ * @property string $credential_id
+ * @property string $service_id
+ * @property null|CarbonInterface $created_at
+ * @property null|CarbonInterface $updated_at
+ * @property null|Credential $credential
+ * @property Service $service
+ * @property Collection<Report> $reports
+ */
+
 final class Check extends Model
 {
     use HasFactory;
@@ -33,6 +50,15 @@ final class Check extends Model
         return $this->belongsTo(
             related: Credential::class,
             foreignKey: 'credential_id',
+        );
+    }
+
+    /** @return HasMany<Report> */
+    public function reports(): HasMany
+    {
+        return $this->hasMany(
+            related: Report::class,
+            foreignKey: 'check_id',
         );
     }
 
