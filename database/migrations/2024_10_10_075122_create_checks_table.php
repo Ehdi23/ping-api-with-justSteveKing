@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('method')->default('GET');
 
             $table->string('body')->nullable();
-            $table->json('header')->nullable();
+            $table->json('headers')->nullable();
             $table->json('parameters')->nullable();
 
             $table->foreignUlid('credential_id')

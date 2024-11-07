@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $service_id
  * @property null|CarbonInterface $created_at
  * @property null|CarbonInterface $updated_at
- * @property null|Credential $credential
+ * @property null|Credential $credentials
  * @property Service $service
  * @property Collection<Report> $reports
  */
@@ -45,7 +45,7 @@ final class Check extends Model
         'service_id',
     ];
 
-    public function credential(): BelongsTo
+    public function credentials(): BelongsTo
     {
         return $this->belongsTo(
             related: Credential::class,
@@ -78,12 +78,9 @@ final class Check extends Model
         );
     }
     /** @return array<string,class-string|string> */
-    protected function casts(): array
-    {
-        return [
-            'body' => 'json',
-            'headers' => AsCollection::class,
-            'parameters' => AsCollection::class,
-        ];
-    }
+    protected $casts = [
+        'body' => 'json',
+        'headers' => AsCollection::class,
+        'parameters' => AsCollection::class,
+    ];
 }

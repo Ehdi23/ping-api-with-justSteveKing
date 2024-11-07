@@ -8,4 +8,4 @@ use Illuminate\Support\Facades\Schedule;
 
 Schedule::command(
     command: Ping::class,
-)->everyFiveMinutes()->withoutOverlapping()->onOneServer();
+)->everyMinute()->withoutOverlapping()->onOneServer();

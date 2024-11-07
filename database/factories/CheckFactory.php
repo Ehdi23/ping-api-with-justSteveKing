@@ -21,7 +21,7 @@ final class CheckFactory extends Factory
             'path' => $this->faker->filePath(),
             'method' => 'GET',
             'body' => null,
-            'header' => null,
+            'headers' => null,
             'parameters' => null,
             'credential_id' => $this->faker->boolean()
                 ? Credential::factory()

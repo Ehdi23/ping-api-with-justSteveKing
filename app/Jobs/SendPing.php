@@ -31,7 +31,7 @@ class SendPing implements ShouldQueue
             url: $this->check->service->url,
         );
 
-        if ($this->check->credential) {
+        if ($this->check->credentials) {
             //
         }
 
@@ -54,6 +54,7 @@ class SendPing implements ShouldQueue
                 'json' => $this->check->json,
             ],
         );
+
 
         $stats = $response->transferStats->getHandlerStats();
 

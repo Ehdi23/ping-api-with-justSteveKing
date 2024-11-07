@@ -29,7 +29,7 @@ final class Report extends Model
         'total_time',
         'check_id',
         'started_at',
-        'finshed_at',
+        'finished_at',
     ];
 
     /** @return BelongsTo<Check> */
